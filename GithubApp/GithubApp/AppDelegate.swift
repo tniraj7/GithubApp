@@ -1,9 +1,17 @@
 import UIKit
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        AppCenter.start(withAppSecret: "aaa42fd2-1175-4099-93fe-94f9392ec4c6", services:[
+          Analytics.self,
+          Crashes.self
+        ])
         
         let attrs = [
             NSAttributedString.Key.foregroundColor: UIColor.red,
