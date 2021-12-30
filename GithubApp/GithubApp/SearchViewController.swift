@@ -21,28 +21,23 @@ class SearchViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        service.loadGithubRepositoryData(keyword: "") { result in
+        load()
+    }
+    
+    func load(retryCount: Int = 0) {
+        self.service.loadGithubRepositoryData(keyword: "") { result in
             switch result {
                 case let .success(repositories):
                     if let repositories = repositories {
                         self.repositories = repositories
                     }
                 case let .failure(error):
-                    self.service.loadGithubRepositoryData(keyword: "") { result in
-                        switch result {
-                            case .success: break
-                            case .failure:
-                                self.service.loadGithubRepositoryData(keyword: "") { result in
-                                    switch result {
-                                        case .success: break
-                                        case let .failure(error):
-                                        self.show(error)
-                                    }
-                                }
-                        }
+                    if retryCount == 2 {
+                        self.show(error)
+                    } else {
+                        self.load(retryCount: retryCount+1)
                     }
-                    
+                
             }
         }
     }

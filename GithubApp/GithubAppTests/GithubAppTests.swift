@@ -54,8 +54,7 @@ class GithubAppTests: XCTestCase {
         
         XCTAssertEqual(sut.numberOfRepositories(), 2)
         
-        XCTAssertEqual(sut.repositoryName(at: 0), repositoryItem1.name)
-        XCTAssertEqual(sut.repositoryName(at: 1), repositoryItem2.name)
+        sut.assert(isRendering: [repositoryItem1, repositoryItem2])
     }
     
     func test_viewWillAppear_failedAPIResponse_3times_showsError() {
@@ -70,6 +69,41 @@ class GithubAppTests: XCTestCase {
         sut.simulateViewWillAppear()
         
         XCTAssertEqual(sut.errorMessage(), "3rd error")
+    }
+    
+    func test_viewWillAppear_successAfterFailedAPIResponse_1time_showsRepositories() {
+        
+        
+        let repositoryItem1 = Item(id: 1, name: "Angular", full_name: "", owner: Owner(login: "", avatar_url: ""), html_url: "", description: "", fork: false, url: "", homepage: "", size: 1, language: "", license: nil, forks: 1, watchers: 1, score: 1, stargazers_count: 1, watchers_count: 1, forks_count: 1)
+        
+        let service = GithubServiceSpy(results: [
+            Result.failure(AnyError(errorDescription: "1st error")),
+            Result.success([repositoryItem1])
+        ])
+        
+        let sut = TestableSearchViewController(service: service)
+        
+        sut.simulateViewWillAppear()
+        
+        sut.assert(isRendering: [repositoryItem1])
+    }
+    
+    func test_viewWillAppear_successAfterFailedAPIResponse_2times_showsRepositories() {
+        
+        
+        let repositoryItem1 = Item(id: 1, name: "Angular", full_name: "", owner: Owner(login: "", avatar_url: ""), html_url: "", description: "", fork: false, url: "", homepage: "", size: 1, language: "", license: nil, forks: 1, watchers: 1, score: 1, stargazers_count: 1, watchers_count: 1, forks_count: 1)
+        
+        let service = GithubServiceSpy(results: [
+            Result.failure(AnyError(errorDescription: "1st error")),
+            Result.failure(AnyError(errorDescription: "2nd error")),
+            Result.success([repositoryItem1])
+        ])
+        
+        let sut = TestableSearchViewController(service: service)
+        
+        sut.simulateViewWillAppear()
+        
+        sut.assert(isRendering: [repositoryItem1])
     }
 
 }
@@ -95,6 +129,14 @@ private extension SearchViewController {
     func simulateViewWillAppear() {
         loadViewIfNeeded()
         beginAppearanceTransition(true, animated: false)
+    }
+    
+    func assert(isRendering repositories: [Item]) {
+        XCTAssertEqual(numberOfRepositories(), repositories.count)
+        
+        for (index, repo) in repositories.enumerated() {
+            XCTAssertEqual(repositoryName(at: index), repo.name)
+        }
     }
     
     func numberOfRepositories() -> Int {
