@@ -19,4 +19,14 @@ class GithubAppTests: XCTestCase {
         
         XCTAssertEqual(service.loadRepositoriesAPICallCount, 0)
     }
+    
+    func test_viewWillAppear_loadsRepositoriesData() {
+        let service = GithubServiceSpy()
+        let sut = SearcViewController(service: service)
+        
+        sut.loadViewIfNeeded()
+        sut.beginAppearanceTransition(true, animated: false)
+        
+        XCTAssertEqual(service.loadRepositoriesAPICallCount, 1)
+    }
 }
