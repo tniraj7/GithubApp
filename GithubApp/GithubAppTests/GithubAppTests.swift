@@ -49,11 +49,8 @@ class GithubAppTests: XCTestCase {
         
         XCTAssertEqual(sut.numberOfRepositories(), 2)
         
-        let cell1 = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: 0, section: 0))
-        XCTAssertEqual(cell1?.textLabel?.text, repositoryItem1.name)
-        
-        let cell2 = sut.tableView.dataSource?.tableView(sut.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
-        XCTAssertEqual(cell2?.textLabel?.text, repositoryItem2.name)
+        XCTAssertEqual(sut.repositoryName(at: 0), repositoryItem1.name)
+        XCTAssertEqual(sut.repositoryName(at: 1), repositoryItem2.name)
     }
 
 }
@@ -65,6 +62,17 @@ private extension SearchViewController {
     }
     
     func numberOfRepositories() -> Int {
-        tableView.numberOfRows(inSection: 0)
+        tableView.numberOfRows(inSection: section)
     }
+    
+    func repositoryName(at row: Int) -> String {
+        repositoryCell(at: row)?.textLabel?.text ?? ""
+    }
+    
+    private func repositoryCell(at row: Int) -> UITableViewCell? {
+        let indexPath = IndexPath(row: row, section: section)
+        return tableView.dataSource?.tableView(tableView, cellForRowAt: indexPath)
+    }
+    
+    private var section : Int { 0 }
 }
