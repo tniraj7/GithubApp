@@ -16,6 +16,7 @@
 		343EE411277C99C1002FF154 /* GithubAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343EE410277C99C1002FF154 /* GithubAppTests.swift */; };
 		343EE41B277C99C1002FF154 /* GithubAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343EE41A277C99C1002FF154 /* GithubAppUITests.swift */; };
 		343EE41D277C99C1002FF154 /* GithubAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343EE41C277C99C1002FF154 /* GithubAppUITestsLaunchTests.swift */; };
+		34BB105F277E2463004CE086 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BB105E277E2463004CE086 /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		343EE416277C99C1002FF154 /* GithubAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GithubAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		343EE41A277C99C1002FF154 /* GithubAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAppUITests.swift; sourceTree = "<group>"; };
 		343EE41C277C99C1002FF154 /* GithubAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		34BB105E277E2463004CE086 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				343EE402277C99C1002FF154 /* Assets.xcassets */,
 				343EE404277C99C1002FF154 /* LaunchScreen.storyboard */,
 				343EE407277C99C1002FF154 /* Info.plist */,
+				34BB105E277E2463004CE086 /* Models.swift */,
 			);
 			path = GithubApp;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				343EE3FE277C99C0002FF154 /* HomeViewController.swift in Sources */,
 				343EE3FA277C99C0002FF154 /* AppDelegate.swift in Sources */,
 				343EE3FC277C99C0002FF154 /* SceneDelegate.swift in Sources */,
+				34BB105F277E2463004CE086 /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
