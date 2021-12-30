@@ -1,4 +1,4 @@
-import XCTest
+import XCTest
 
 class GithubAppUITests: XCTestCase {
 }
