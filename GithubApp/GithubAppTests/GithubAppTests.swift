@@ -3,15 +3,20 @@ import XCTest
 
 class GithubServiceSpy: GithubService {
     private(set) var loadRepositoriesAPICallCount: Int = 0
-    private let result: Result<[Item]?, Error>
+    private var results: [Result<[Item]?, Error>]
+    
     
     init(result: [Item] = []) {
-        self.result = .success(result)
+        self.results = [.success(result)]
+    }
+    
+    init(results: [Result<[Item]?, Error>]) {
+        self.results = results
     }
 
     func loadGithubRepositoryData(keyword: String, completion: @escaping ((Result<[Item]?, Error>) -> Void)) {
         loadRepositoriesAPICallCount += 1
-        completion(result)
+        completion(results.removeFirst())
     }
 }
 
@@ -52,9 +57,40 @@ class GithubAppTests: XCTestCase {
         XCTAssertEqual(sut.repositoryName(at: 0), repositoryItem1.name)
         XCTAssertEqual(sut.repositoryName(at: 1), repositoryItem2.name)
     }
+    
+    func test_viewWillAppear_failedAPIResponse_3times_showsError() {
+        
+        let service = GithubServiceSpy(results: [
+            Result.failure(AnyError(errorDescription: "1st error")),
+            Result.failure(AnyError(errorDescription: "2nd error")),
+            Result.failure(AnyError(errorDescription: "3rd error"))
+        ])
+        let sut = TestableSearchViewController(service: service)
+        
+        sut.simulateViewWillAppear()
+        
+        XCTAssertEqual(sut.errorMessage(), "3rd error")
+    }
 
 }
 
+private struct AnyError: LocalizedError {
+    var errorDescription: String?
+}
+
+private class TestableSearchViewController: SearchViewController {
+    var presentedVC: UIViewController?
+    
+    override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+        presentedVC = viewControllerToPresent
+    }
+    
+    func errorMessage() -> String? {
+        let alert = presentedVC as? UIAlertController
+        return alert?.message
+    }
+}
+ 
 private extension SearchViewController {
     func simulateViewWillAppear() {
         loadViewIfNeeded()

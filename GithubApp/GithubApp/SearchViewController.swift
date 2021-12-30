@@ -28,7 +28,21 @@ class SearchViewController: UITableViewController {
                     if let repositories = repositories {
                         self.repositories = repositories
                     }
-                case .failure: break
+                case let .failure(error):
+                    self.service.loadGithubRepositoryData(keyword: "") { result in
+                        switch result {
+                            case .success: break
+                            case .failure:
+                                self.service.loadGithubRepositoryData(keyword: "") { result in
+                                    switch result {
+                                        case .success: break
+                                        case let .failure(error):
+                                        self.show(error)
+                                    }
+                                }
+                        }
+                    }
+                    
             }
         }
     }
@@ -42,5 +56,13 @@ class SearchViewController: UITableViewController {
         let repositoryItem = repositories[indexPath.row]
         cell.textLabel?.text = repositoryItem.name
         return cell
+    }
+}
+
+extension UIViewController {
+    func show(_ error: Error) {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
