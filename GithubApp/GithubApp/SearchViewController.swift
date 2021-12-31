@@ -1,5 +1,18 @@
 import UIKit
 
+class RepositoryDetailVC: UIViewController {
+    var repository: Item
+    
+    init(repository: Item) {
+        self.repository = repository
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class SearchViewController: UITableViewController {
     
     private let service: GithubService
@@ -52,6 +65,10 @@ class SearchViewController: UITableViewController {
         cell.textLabel?.text = repositoryItem.name
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        show(repositories[indexPath.row])
+    }
 }
 
 extension UIViewController {
@@ -59,5 +76,10 @@ extension UIViewController {
         let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
+    }
+    
+    func show (_ repository: Item) {
+        let vc = RepositoryDetailVC(repository: repository)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

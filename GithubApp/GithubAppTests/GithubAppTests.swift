@@ -105,6 +105,25 @@ class GithubAppTests: XCTestCase {
         
         sut.assert(isRendering: [repositoryItem1])
     }
+    
+    func test_repositorySelection_showsRepositoryDetails() {
+        
+        let repositoryItem1 = Item(id: 1, name: "Angular", full_name: "", owner: Owner(login: "", avatar_url: ""), html_url: "", description: "", fork: false, url: "", homepage: "", size: 1, language: "", license: nil, forks: 1, watchers: 1, score: 1, stargazers_count: 1, watchers_count: 1, forks_count: 1)
+        
+        let service = GithubServiceSpy(results: [
+            Result.success([repositoryItem1])
+        ])
+        
+        let sut = SearchViewController(service: service)
+        let navigation = NonAnimatedUINavigationController(rootViewController: sut)
+        
+        sut.simulateViewWillAppear()
+        sut.selectRepository(at: 0)
+        
+        let detail = navigation.topViewController as? RepositoryDetailVC
+        
+        XCTAssertEqual(detail?.repository, repositoryItem1)
+    }
 
 }
 
@@ -124,6 +143,12 @@ private class TestableSearchViewController: SearchViewController {
         return alert?.message
     }
 }
+
+private class NonAnimatedUINavigationController: UINavigationController {
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        super.pushViewController(viewController, animated: false)
+    }
+}
  
 private extension SearchViewController {
     func simulateViewWillAppear() {
@@ -137,6 +162,11 @@ private extension SearchViewController {
         for (index, repo) in repositories.enumerated() {
             XCTAssertEqual(repositoryName(at: index), repo.name)
         }
+    }
+    
+    func selectRepository(at row: Int) {
+        let indexPath = IndexPath(row: row, section: section)
+        tableView.delegate?.tableView?(tableView, didSelectRowAt: indexPath)
     }
     
     func numberOfRepositories() -> Int {

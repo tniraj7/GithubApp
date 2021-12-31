@@ -4,7 +4,11 @@ struct GithubAPIResponse: Decodable {
     var items: [Item]?
 }
 
-struct Item: Decodable, Identifiable {
+struct Item: Decodable, Identifiable, Equatable {
+    static func == (lhs: Item, rhs: Item) -> Bool {
+        lhs.name == rhs.name
+    }
+    
     var id: Int
     var name: String
     var full_name: String
