@@ -1,25 +1,6 @@
 import XCTest
 @testable import GithubApp
 
-class GithubServiceSpy: GithubService {
-    private(set) var loadRepositoriesAPICallCount: Int = 0
-    private var results: [Result<[Item]?, Error>]
-    
-    
-    init(result: [Item] = []) {
-        self.results = [.success(result)]
-    }
-    
-    init(results: [Result<[Item]?, Error>]) {
-        self.results = results
-    }
-
-    func loadGithubRepositoryData(keyword: String, completion: @escaping ((Result<[Item]?, Error>) -> Void)) {
-        loadRepositoriesAPICallCount += 1
-        completion(results.removeFirst())
-    }
-}
-
 class GithubAppTests: XCTestCase {
 
     func test_viewDidLoad_doesntLoadGithubRepositoryData() {
@@ -125,6 +106,25 @@ class GithubAppTests: XCTestCase {
         XCTAssertEqual(detail?.repository, repositoryItem1)
     }
 
+}
+
+class GithubServiceSpy: GithubService {
+    private(set) var loadRepositoriesAPICallCount: Int = 0
+    private var results: [Result<[Item]?, Error>]
+    
+    
+    init(result: [Item] = []) {
+        self.results = [.success(result)]
+    }
+    
+    init(results: [Result<[Item]?, Error>]) {
+        self.results = results
+    }
+
+    func loadGithubRepositoryData(keyword: String, completion: @escaping ((Result<[Item]?, Error>) -> Void)) {
+        loadRepositoriesAPICallCount += 1
+        completion(results.removeFirst())
+    }
 }
 
 private struct AnyError: LocalizedError {
