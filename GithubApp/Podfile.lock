@@ -7,6 +7,7 @@ PODS:
   - AppCenter/Core (4.3.0)
   - AppCenter/Crashes (4.3.0):
     - AppCenter/Core
+  - Kingfisher (7.1.1)
   - RxBlocking (6.2.0):
     - RxSwift (= 6.2.0)
   - RxCocoa (6.2.0):
@@ -20,6 +21,7 @@ PODS:
 
 DEPENDENCIES:
   - AppCenter
+  - Kingfisher (~> 7.0)
   - RxBlocking (= 6.2.0)
   - RxCocoa (= 6.2.0)
   - RxSwift (= 6.2.0)
@@ -28,6 +30,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AppCenter
+    - Kingfisher
     - RxBlocking
     - RxCocoa
     - RxRelay
@@ -36,12 +39,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AppCenter: 883369ab78427b0561c688158d689dfe1f993ea9
+  Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
   RxBlocking: 0b29f7d2079109a8de49c411381bed7c33ef1eeb
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   RxTest: 0c692fa672b694373ba86d2b00033595297a2831
 
-PODFILE CHECKSUM: ee594ac623724ba1a59ce35850b9f23c19de31a9
+PODFILE CHECKSUM: 3deb5d08c9fb3edb228dd3031064b5b595e1914e
 
 COCOAPODS: 1.11.2

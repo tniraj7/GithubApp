@@ -8,18 +8,17 @@ target 'GithubApp' do
     pod 'AppCenter'
     pod 'RxSwift', '6.2.0'
    	pod 'RxCocoa', '6.2.0'
+    pod 'Kingfisher', '~> 7.0'
     
   target 'GithubAppTests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'AppCenter'
     pod 'RxBlocking', '6.2.0'
     pod 'RxTest', '6.2.0'
   end
 
   target 'GithubAppUITests' do
     # Pods for testing
-    pod 'AppCenter'
   end
 
 end

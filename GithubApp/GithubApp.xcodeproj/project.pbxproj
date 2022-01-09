@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34037F1C2781BCCD007EB2CA /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34037F1B2781BCCD007EB2CA /* RepositoryCell.swift */; };
+		34037F1E2781CBFF007EB2CA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34037F1D2781CBFF007EB2CA /* HomeViewModel.swift */; };
 		343EE3FA277C99C0002FF154 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343EE3F9277C99C0002FF154 /* AppDelegate.swift */; };
 		343EE3FC277C99C0002FF154 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343EE3FB277C99C0002FF154 /* SceneDelegate.swift */; };
 		343EE3FE277C99C0002FF154 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343EE3FD277C99C0002FF154 /* HomeViewController.swift */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34037F1B2781BCCD007EB2CA /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
+		34037F1D2781CBFF007EB2CA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		343EE3F6277C99C0002FF154 /* GithubApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		343EE3F9277C99C0002FF154 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		343EE3FB277C99C0002FF154 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,14 +112,16 @@
 			children = (
 				343EE3F9277C99C0002FF154 /* AppDelegate.swift */,
 				343EE3FB277C99C0002FF154 /* SceneDelegate.swift */,
+				34037F1B2781BCCD007EB2CA /* RepositoryCell.swift */,
 				343EE3FD277C99C0002FF154 /* HomeViewController.swift */,
+				34BB1060277E2747004CE086 /* SearchViewController.swift */,
+				34BB105E277E2463004CE086 /* Models.swift */,
+				34BB105B277E22A8004CE086 /* GithubService.swift */,
+				34037F1D2781CBFF007EB2CA /* HomeViewModel.swift */,
 				343EE3FF277C99C0002FF154 /* Main.storyboard */,
 				343EE402277C99C1002FF154 /* Assets.xcassets */,
 				343EE404277C99C1002FF154 /* LaunchScreen.storyboard */,
 				343EE407277C99C1002FF154 /* Info.plist */,
-				34BB105B277E22A8004CE086 /* GithubService.swift */,
-				34BB105E277E2463004CE086 /* Models.swift */,
-				34BB1060277E2747004CE086 /* SearchViewController.swift */,
 			);
 			path = GithubApp;
 			sourceTree = "<group>";
@@ -276,7 +282,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				343EE3FE277C99C0002FF154 /* HomeViewController.swift in Sources */,
+				34037F1C2781BCCD007EB2CA /* RepositoryCell.swift in Sources */,
 				343EE3FA277C99C0002FF154 /* AppDelegate.swift in Sources */,
+				34037F1E2781CBFF007EB2CA /* HomeViewModel.swift in Sources */,
 				34BB105C277E22A8004CE086 /* GithubService.swift in Sources */,
 				34BB1061277E2747004CE086 /* SearchViewController.swift in Sources */,
 				343EE3FC277C99C0002FF154 /* SceneDelegate.swift in Sources */,
@@ -511,7 +519,6 @@
 		343EE424277C99C1002FF154 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -531,7 +538,6 @@
 		343EE425277C99C1002FF154 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -551,7 +557,6 @@
 		343EE427277C99C1002FF154 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N38EC3HSGY;
@@ -569,7 +574,6 @@
 		343EE428277C99C1002FF154 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N38EC3HSGY;
