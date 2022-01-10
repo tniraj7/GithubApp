@@ -2,7 +2,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class HomeViewModel {
+class SearchBarViewModel {
     
     private let disposeBag = DisposeBag()
     

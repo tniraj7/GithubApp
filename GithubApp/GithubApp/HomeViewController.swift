@@ -6,7 +6,7 @@ import SafariServices
 class HomeViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
-    private var viewModel = HomeViewModel()
+    private var viewModel = SearchBarViewModel()
     
     lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
