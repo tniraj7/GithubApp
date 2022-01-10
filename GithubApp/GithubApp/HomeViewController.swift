@@ -79,6 +79,9 @@ class HomeViewController: UIViewController {
             .compactMap({ URL(string: $0.html_url) })
             .map { SFSafariViewController(url: $0) }
             .subscribe(onNext: { [weak self] safariViewController in
+                if let selectedRowIndexPath = self?.tableView.indexPathForSelectedRow {
+                    self?.tableView.deselectRow(at: selectedRowIndexPath, animated: true)
+                }
                 self?.present(safariViewController, animated: true)
             })
             .disposed(by: disposeBag)
