@@ -9,9 +9,9 @@ enum Section {
 class DiffVC: UIViewController {
     
     private var viewModel: ViewModel
-    var disposable = Set<AnyCancellable>()
+    private var disposable = Set<AnyCancellable>()
     
-    lazy var tableV: UITableView = {
+    private lazy var tableV: UITableView = {
         let tv = UITableView(frame: .zero, style: .insetGrouped)
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
@@ -19,7 +19,7 @@ class DiffVC: UIViewController {
     
     private lazy var dataSource = configureDataSource()
     
-    lazy var searchController: UISearchController = {
+    private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
