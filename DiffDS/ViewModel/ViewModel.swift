@@ -21,7 +21,7 @@ class ViewModel {
         keyword
             .dropFirst()
             .filter { !$0.isEmpty }
-            .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
+            .debounce(for: .seconds(0.3), scheduler: RunLoop.main)
             .sink { string in
                 
                 self.repository
@@ -29,15 +29,15 @@ class ViewModel {
                     .sink(receiveCompletion: { [weak self] completion in
                         switch completion {
                         case .failure(let error):
-                            self?.error.value = error.localizedDescription
+                            self?.error.send(error.localizedDescription)
                             self?.isLoading.send(false)
                         case .finished:
                             self?.isLoading.send(false)
                         }
                     }) { [weak self] response in
-                        self?.repositories.value = response.items
+                        self?.repositories.send(response.items)
                     }.store(in: &self.disposable)
                 
-            }.store(in: &self.disposable)
+            }.store(in: &disposable)
     }
 }

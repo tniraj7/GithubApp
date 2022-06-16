@@ -51,7 +51,10 @@ class DiffVC: UIViewController {
         
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         observeSearchBarText()
         observeViewModelData()
     }
@@ -98,7 +101,7 @@ class DiffVC: UIViewController {
         dataSource.apply(snapshot, animatingDifferences: animateDifferences)
     }
 }
-// MARK: - TableView DataSource & Delegate
+// MARK: - TableView Delegate
 
 extension DiffVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

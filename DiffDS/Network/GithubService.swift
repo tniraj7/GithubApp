@@ -24,5 +24,9 @@ class GithubService {
     func getGithubRepositoryData(for url: URL) -> AnyPublisher<GithubAPIResponse, Error> {
         return client.makeHttpRequest(for: url, httpMethod: HttpMethod.get.rawValue)
     }
+    
+    func getGithubAvatarImage(for url: URL) -> AnyPublisher<Data, Error> {
+        return client.makeHttpRequest(for: url, httpMethod: HttpMethod.get.rawValue)
+    }
 }
 
