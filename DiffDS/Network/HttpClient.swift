@@ -9,10 +9,10 @@ class HttpClient {
         self.session = session
     }
     
-    func makeHttpRequest<T: Codable>(for url: URL, httpMethod: String) -> AnyPublisher<T, Error>{
+    func makeHttpRequest<T: Codable>(for url: URL, httpMethod: HttpMethod) -> AnyPublisher<T, Error>{
         
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData)
-        request.httpMethod = httpMethod
+        request.httpMethod = httpMethod.rawValue
         
         return session.dataTaskPublisher(for:request)
             .receive(on: DispatchQueue.main)
