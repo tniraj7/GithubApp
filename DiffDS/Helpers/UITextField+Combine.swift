@@ -1,5 +1,5 @@
 import Foundation
-import UIKit
+import UIKit.UITextField
 import Combine
 
 extension UITextField {
