@@ -19,7 +19,6 @@ class ViewModel {
         isLoading.send(true)
         
         keyword
-            .dropFirst()
             .filter { !$0.isEmpty }
             .debounce(for: .seconds(0.3), scheduler: RunLoop.main)
             .sink { string in
