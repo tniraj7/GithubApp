@@ -4,11 +4,11 @@ import Combine
 class ViewModel {
     
     private let repository: GithubDataFacade
-    private(set) var disposable = Set<AnyCancellable>()
+    private(set) var disposable   = Set<AnyCancellable>()
     private(set) var repositories = CurrentValueSubject<[Item], Never>([])
-    private(set) var error = CurrentValueSubject<String?, Never>(nil)
-    private(set) var isLoading = CurrentValueSubject<Bool, Never>(false)
-    var keyword = CurrentValueSubject<String, Never>("")
+    private(set) var error        = CurrentValueSubject<String?, Never>(nil)
+    private(set) var isLoading    = CurrentValueSubject<Bool, Never>(false)
+    var keyword                   = CurrentValueSubject<String, Never>("")
     
     init(_ repository: GithubDataFacade) {
         self.repository = repository
