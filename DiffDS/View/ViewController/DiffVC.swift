@@ -91,6 +91,7 @@ class DiffVC: UIViewController {
             cell.configureCell(item: item)
             return cell
         }
+        dataSource.defaultRowAnimation = .fade
         return dataSource
     }
     
