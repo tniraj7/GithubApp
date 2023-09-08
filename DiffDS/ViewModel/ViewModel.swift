@@ -29,6 +29,7 @@ class ViewModel {
                         switch completion {
                         case .failure(let error):
                             self?.error.send(error.localizedDescription)
+                            self?.repositories.send([])
                             self?.isLoading.send(false)
                         case .finished:
                             self?.isLoading.send(false)
